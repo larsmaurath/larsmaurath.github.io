@@ -18,7 +18,7 @@ For a single game we can compare xG values for both teams to get a sense if the 
 
 The concept of expected goals can also help coaches and players to make better decisions. Should players reduce the number of long-range shots they take? Should they instead make every effort to pass the ball into central positions close to goal? While the focus of xG debates are usually on attack, every aspect can also be applied to a team's defense.
 
-The xG metric went mainstream when the BBC included it in its 'Match of the Day' program in the 2017/18 Premier League season. They now usually show the xG values for each team following the match summary.
+The xG metric went mainstream when the BBC included it in its *Match of the Day* program in the 2017/18 Premier League season. They now usually show the xG values for each team following the match summary.
 
 xG Shot Maps
 ------------
@@ -30,7 +30,9 @@ Below chart of Harry Kane's World Cup shots shows one way to visualize xG for a 
 xG Flow Charts
 --------------
 
-xG flow charts visualize the development of xG values over the duration of a single match. Next to a simple comparison of final score to final xG values it also allows us to see the timing and quality of chances for each team. This can give us a sense of how the match unfolded and which team was dominant during which period. In the below chart we can see for example that Crystal Palace scored with very much their first chance while Liverpool racked up quite a few shots already without converting any. The chart also immediately tells us that while Firmino's 2:1 was a very low xG shot (on average this shot hardly ever converts to a goal), Salah's 3:2 was a very easy goal.
+xG flow charts visualize the development of xG values over the duration of a single match. Next to a simple comparison of final score to final xG values it also allows us to see the timing and quality of chances for each team. This can give us a sense of how the match unfolded and which team was dominant during which period.
+
+In the below chart we can see for example that Crystal Palace scored with very much their first chance while Liverpool racked up quite a few shots already without converting any. The chart also immediately tells us that while Firmino's 2:1 was a very low xG shot (on average this shot hardly ever converts to a goal), Salah's 3:2 was a very easy goal.
 
 ![](flow_chart.png)
 
