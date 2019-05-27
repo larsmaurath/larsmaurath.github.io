@@ -4,6 +4,12 @@ In my example I wanted to show free kick conversion rates by season in tabular f
 
 To make this as reproducible as possible I will use an example based on the *diamonds* data set which comes with the usual R installation. This dataset has information on the size, cut, color, prize and some other characteristics of diamonds. You can follow the steps below by copying the code into your RStudio or R environment.
 
+``` r
+library(ggplot2)
+
+head(diamonds)
+```
+
     ## # A tibble: 6 x 10
     ##   carat cut       color clarity depth table price     x     y     z
     ##   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
@@ -26,6 +32,20 @@ ggplot(diamonds, aes(x = carat, y = price, color = cut)) + geom_point()
 
 Let's try to add a table on this chart which shows average price-per-carat for the different diamond cuts. This will give us some nice summary data which will support the information already shown in the plot. We will first compute the price-per-carat for each diamond to then aggregate over the cut categories.
 
+``` r
+diamonds$price_par_carat <- diamonds$price / diamonds$carat
+
+price_table <- aggregate(diamonds$price_par_carat,
+                         list(Cut = diamonds$cut), mean)
+
+names(price_table)[names(price_table) == 'x'] <- 'Avg Price Par Carat'
+
+price_table$`Avg Price Par Carat` <- round(
+  price_table$`Avg Price Par Carat`, digits = 0)
+
+show(price_table)
+```
+
     ##         Cut Avg Price Par Carat
     ## 1      Fair                3767
     ## 2      Good                3860
@@ -34,6 +54,25 @@ Let's try to add a table on this chart which shows average price-per-carat for t
     ## 5     Ideal                3920
 
 The result is actually a little counter-intuitive. I would have expected the 'Ideal' cut to have the highest price-par-carat. But I am no expert in diamonds so who am I to judge? Let's try to add this table to the chart. The lower-right corner seems to be an ideal place for some more information.
+
+``` r
+library(gridExtra)
+
+tt <- ttheme_minimal(
+  core = list(fg_params = list(col = "black", fontsize = 9)),
+  colhead = list(fg_params = list(col = "black", fontsize = 9))
+  )
+
+conversion_grob <- tableGrob(price_table, theme = tt, rows = NULL)
+
+ggplot(diamonds, aes(x = carat, y = price, color = cut)) + geom_point() +
+  annotation_custom(
+    conversion_grob,
+    xmin = 3.2,
+    xmax = 5,
+    ymin = 0,
+    ymax = 8000)
+```
 
 ![](2018-03-17-How-To-Add-A-Custom-Table-To-A-ggplot-Chart_files/figure-markdown_github/table4-1.png)
 
@@ -46,6 +85,19 @@ The ttheme\_minimal function loads some default formatting options which are ide
 The next step is to create the table object from the data frame while also providing our customized theme. We then annotate this table to the plot. We need to specify the coordinates in which we want the table so sit. You can orientate along the axis legends for these values.
 
 Another formatting option that may come in handy is to specify the table width and height for the tableGrob function. This allows us to save some more space. The constants 2 and 6 need to match the number of columns and rows respectively or this will throw an error message. The height and width parameters can be found by trial and error.
+
+``` r
+conversion_grob$widths <- unit(rep(0.7, 2), "npc")
+conversion_grob$heights <- unit(rep(0.1, 6), "npc")
+
+ggplot(diamonds, aes(x = carat, y = price, color = cut)) + geom_point() +
+  annotation_custom(
+    conversion_grob,
+    xmin = 3.2,
+    xmax = 5,
+    ymin = 0,
+    ymax = 8000)
+```
 
 ![](2018-03-17-How-To-Add-A-Custom-Table-To-A-ggplot-Chart_files/figure-markdown_github/table5-1.png)
 
