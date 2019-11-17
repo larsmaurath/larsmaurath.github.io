@@ -1,5 +1,10 @@
-R Markdown
-----------
+---
+name: Custom buttons with R's DT package
+tools: [C#, XML, WPF]
+image: https://www.sketchappsources.com/resources/source-image/movie-badges-jurajjurik.png
+description: This project has an individual showcase page, not just a direct link to the project site or repo. Now you have more space to describe your awesome project!
+
+---
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
