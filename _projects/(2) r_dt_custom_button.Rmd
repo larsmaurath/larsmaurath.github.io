@@ -2,12 +2,13 @@
 title: "Custom buttons with R's DT package"
 author: "Lars Maurath"
 date: "16/11/2019"
-output: html_document
 name: Custom buttons with R's DT package
 tools: [C#, XML, WPF]
 image: https://www.sketchappsources.com/resources/source-image/movie-badges-jurajjurik.png
 description: This project has an individual showcase page, not just a direct link to the project site or repo. Now you have more space to describe your awesome project!
-
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}
