@@ -1,7 +1,16 @@
 ---
+title: "Custom Buttons in R DT Tables"
 date: "16/11/2019"
 output: html_document
 ---
+
+The R [DT package](https://rstudio.github.io/DT/) is my go-to way to create tables in R Shiny or Dashboard applications. It comes with many built-in functionalities like sorting, several styling options and predefined buttons that let's you export and print data. One of the features I am not so crazy about is the filtering functionality, so I have been looking into creating a custom button which filters the table based on some defined criterion.
+
+In the code below we create two custom buttons. Button *Filter* filters the first column of *mtcars* for the value *Mazda RX4*; a second button *Restore* undoes our filtering.
+To define the behavior of a custom button we need to dig a little bit into the JavaScript functionality which DT is originally based on.
+The original JavaScript [documentation](https://datatables.net/manual/plug-ins/search) guides us through how the filtering works. 
+
+Two thins to point out: JavaScript uses zero-based numbering instead of the one-based you may be used to by R (we want *data[0]* to be equal to *Mazda RX4*). The *DT::JS* function let's use evaluate JavaScript code as the action of our button click.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
