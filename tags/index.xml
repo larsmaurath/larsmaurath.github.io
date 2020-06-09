@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Lars Maurath</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DT</title>
+      <link>/tags/dt/</link>
+      <pubDate>Tue, 09 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>/tags/r/</link>
+      <pubDate>Tue, 09 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>flexdashboard</title>
@@ -26,24 +44,6 @@
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/munich/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DT</title>
-      <link>/tags/dt/</link>
-      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/dt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R</title>
-      <link>/tags/r/</link>
-      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/r/</guid>
       <description></description>
     </item>
     

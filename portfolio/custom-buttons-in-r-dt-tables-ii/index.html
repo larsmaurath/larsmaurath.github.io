@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Tags</title>
+<title>Custom Buttons in R DT Tables II</title>
 <meta name="description" content="Personal Blog of Lars Maurath">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -28,8 +28,6 @@
 
 <link href="/css/custom.css" rel="stylesheet">
 <link rel="shortcut icon" href="/img/favicon.png">
-
-  <link href="/tags/index.xml" rel="alternate" type="application/rss+xml" title="Lars Maurath" />
 
 
 <script type="application/javascript">
@@ -102,91 +100,80 @@ if (!doNotTrack) {
 </div>
 
               
-  <div class="col-xs-12 col-sm-8 col-md-9 content-column">
-    <div class="small-navbar visible-xs">
+<div class="col-xs-12 col-sm-8 col-md-9 content-column white-background">
+  <div class="small-navbar visible-xs">
   <button type="button" data-toggle="offcanvas" class="btn btn-ghost pull-left"> <i class="fa fa-align-left"> </i>Menu</button>
   <h1 class="small-navbar-heading"><a href="/">Lars Maurath</a></h1>
 </div>
 
-    <div class="grid">
-        <div class="row">
-          
-              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 masonry-item">
-                  <div class="box-masonry">
-                      
-                      
-                      <div class="box-masonry-text">
-                      
-                          <h4><a href="/tags/dt/">DT</a></h4>
-                          <div class="box-masonry-description">
-                            <p>
-                                
-                                  
-                                
-                            </p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          
-              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 masonry-item">
-                  <div class="box-masonry">
-                      
-                      
-                      <div class="box-masonry-text">
-                      
-                          <h4><a href="/tags/r/">R</a></h4>
-                          <div class="box-masonry-description">
-                            <p>
-                                
-                                  
-                                
-                            </p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          
-              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 masonry-item">
-                  <div class="box-masonry">
-                      
-                      
-                      <div class="box-masonry-text">
-                      
-                          <h4><a href="/tags/flexdashboard/">flexdashboard</a></h4>
-                          <div class="box-masonry-description">
-                            <p>
-                                
-                                  
-                                
-                            </p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          
-              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 masonry-item">
-                  <div class="box-masonry">
-                      
-                      
-                      <div class="box-masonry-text">
-                      
-                          <h4><a href="/tags/munich/">Munich</a></h4>
-                          <div class="box-masonry-description">
-                            <p>
-                                
-                                  
-                                
-                            </p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          
-        </div>
-    </div>
-</div>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="content-column-content">
+         <h1>Custom Buttons in R DT Tables II</h1>
+         
 
+
+<p>A few months ago I <a href="https://larsmaurath.github.io/portfolio/custom-buttons-in-r-dt-tables/" target="_blank">wrote</a> a short post on how to define custom button logic for R DT tables. Since then my Javascript knowledge slightly improved and I was able to implement this cleaner while also fixing a flaw in the previous solution.</p>
+<p>The old approach did not preserve previous sorting on table columns. This sounds like a minor annoyance but actually makes the user experience significantly worse. The fix below makes use of DT’s built-in search functionality which preserves sorting.</p>
+<p>One slight difference in behavior is that the button logic will also keep non-exact matches in the table as you would expect from a search functionality. Below we are filtering for <em>Mazda RX4</em>, but as you can see after the button click we still also show <em>Mazda RX4 Wag</em>.</p>
+<pre class="r"><code>library(&quot;DT&quot;)
+
+datatable(mtcars,
+          extensions = &#39;Buttons&#39;,
+          options = list(
+            dom = &#39;Brt&#39;,
+            buttons = list(
+              list(
+                extend = &#39;collection&#39;,
+                text = &#39;Filter&#39;,
+                action = DT::JS(&quot;function ( e, dt, node, config ) {
+                                   dt.column(0).data().search(&#39;&#39;).draw(false);
+                                   dt.column(0).data().search(&#39;Mazda RX4&#39;).draw(true);
+                                }&quot;)
+              ),
+              list(
+                extend = &#39;collection&#39;,
+                text = &#39;Restore&#39;,
+                action = DT::JS(&quot;function ( e, dt, node, config ) {
+                                   dt.column(0).data().search(&#39;&#39;).draw(true);
+                                }&quot;)
+              )
+            )
+          )
+)</code></pre>
+<pre class="r"><code>library(&quot;DT&quot;)
+
+d2 &lt;- datatable(mtcars,
+          extensions = &#39;Buttons&#39;,
+          options = list(
+            dom = &#39;Brt&#39;,
+            buttons = list(
+              list(
+                extend = &#39;collection&#39;,
+                text = &#39;Filter&#39;,
+                action = DT::JS(&quot;function ( e, dt, node, config ) {
+                                   dt.column(0).data().search(&#39;&#39;).draw(false);
+                                   dt.column(0).data().search(&#39;Mazda RX4&#39;).draw(true);
+                                }&quot;)
+              ),
+              list(
+                extend = &#39;collection&#39;,
+                text = &#39;Restore&#39;,
+                action = DT::JS(&quot;function ( e, dt, node, config ) {
+                                   dt.column(0).data().search(&#39;&#39;).draw(true);
+                                }&quot;)
+              )
+            )
+          )
+)</code></pre>
+<iframe seamless src="../d2.html" width="1100" height="600" frameborder="0" scrolling="no" onload="resizeIframe(this)">
+</iframe>
+
+         
+      </div>
+    </div>
+  </div>
+</div>
 
           </div>
       </div>

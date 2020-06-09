@@ -6,10 +6,20 @@
     <description>Recent content in DT on Lars Maurath</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 16 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/dt/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Custom Buttons in R DT Tables II</title>
+      <link>/portfolio/custom-buttons-in-r-dt-tables-ii/</link>
+      <pubDate>Tue, 09 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/custom-buttons-in-r-dt-tables-ii/</guid>
+      <description>A few months ago I wrote a short post on how to define custom button logic for R DT tables. Since then my Javascript knowledge slightly improved and I was able to implement this cleaner while also fixing a flaw in the previous solution.
+The old approach did not preserve previous sorting on table columns. This sounds like a minor annoyance but actually makes the user experience significantly worse. The fix below makes use of DT’s built-in search functionality which preserves sorting.</description>
+    </item>
     
     <item>
       <title>Custom Buttons in R DT Tables</title>
